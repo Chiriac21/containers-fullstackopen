@@ -1,0 +1,110 @@
+chiriac@Chiriac:~$ docker container run --rm ubuntu ls -la
+total 56
+drwxr-xr-x   1 root root 4096 Apr  3 12:02 .
+drwxr-xr-x   1 root root 4096 Apr  3 12:02 ..
+-rwxr-xr-x   1 root root    0 Apr  3 12:02 .dockerenv
+lrwxrwxrwx   1 root root    7 Apr 22  2024 bin -> usr/bin
+drwxr-xr-x   2 root root 4096 Apr 22  2024 boot
+drwxr-xr-x   5 root root  340 Apr  3 12:02 dev
+drwxr-xr-x   1 root root 4096 Apr  3 12:02 etc
+drwxr-xr-x   3 root root 4096 Feb 17 02:09 home
+lrwxrwxrwx   1 root root    7 Apr 22  2024 lib -> usr/lib
+lrwxrwxrwx   1 root root    9 Apr 22  2024 lib64 -> usr/lib64
+drwxr-xr-x   2 root root 4096 Feb 17 02:02 media
+drwxr-xr-x   2 root root 4096 Feb 17 02:02 mnt
+drwxr-xr-x   2 root root 4096 Feb 17 02:02 opt
+dr-xr-xr-x 294 root root    0 Apr  3 12:02 proc
+drwx------   2 root root 4096 Feb 17 02:09 root
+drwxr-xr-x   4 root root 4096 Feb 17 02:09 run
+lrwxrwxrwx   1 root root    8 Apr 22  2024 sbin -> usr/sbin
+drwxr-xr-x   2 root root 4096 Feb 17 02:02 srv
+dr-xr-xr-x  13 root root    0 Apr  3 12:02 sys
+drwxrwxrwt   2 root root 4096 Feb 17 02:09 tmp
+drwxr-xr-x  12 root root 4096 Feb 17 02:02 usr
+drwxr-xr-x  11 root root 4096 Feb 17 02:09 var
+chiriac@Chiriac:~$ container ls -a
+Command 'container' not found, did you mean:
+  command 'containerd' from deb containerd (1.7.28-0ubuntu1~24.04.2)
+Try: sudo apt install <deb name>
+chiriac@Chiriac:~$ docker container ls -a
+CONTAINER ID   IMAGE         COMMAND    CREATED          STATUS                       PORTS     NAMES
+9930731ad44e   ubuntu        "bash"     7 minutes ago    Exited (127) 2 minutes ago             interesting_elion
+d539d3d223e8   hello-world   "/hello"   12 minutes ago   Exited (0) 12 minutes ago              epic_visvesvaraya
+deae860f4ff0   hello-world   "/hello"   16 minutes ago   Exited (0) 16 minutes ago              recursing_stonebraker
+1ce1de13595f   hello-world   "/hello"   16 minutes ago   Exited (0) 16 minutes ago              focused_edison
+chiriac@Chiriac:~$ docker start interesting_elion
+interesting_elion
+chiriac@Chiriac:~$ docker container ls -a
+CONTAINER ID   IMAGE         COMMAND    CREATED          STATUS                      PORTS     NAMES
+9930731ad44e   ubuntu        "bash"     8 minutes ago    Up 7 seconds                          interesting_elion
+d539d3d223e8   hello-world   "/hello"   14 minutes ago   Exited (0) 14 minutes ago             epic_visvesvaraya
+deae860f4ff0   hello-world   "/hello"   17 minutes ago   Exited (0) 17 minutes ago             recursing_stonebraker
+1ce1de13595f   hello-world   "/hello"   17 minutes ago   Exited (0) 17 minutes ago             focused_edison
+chiriac@Chiriac:~$ docker container ls
+CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS          PORTS     NAMES
+9930731ad44e   ubuntu    "bash"    9 minutes ago   Up 38 seconds             interesting_elion
+chiriac@Chiriac:~$ docker kill interesting_elion
+interesting_elion
+chiriac@Chiriac:~$ docker container ls
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+chiriac@Chiriac:~$ docker container ls -a
+CONTAINER ID   IMAGE         COMMAND    CREATED          STATUS                        PORTS     NAMES
+9930731ad44e   ubuntu        "bash"     9 minutes ago    Exited (137) 14 seconds ago             interesting_elion
+d539d3d223e8   hello-world   "/hello"   15 minutes ago   Exited (0) 15 minutes ago               epic_visvesvaraya
+deae860f4ff0   hello-world   "/hello"   18 minutes ago   Exited (0) 18 minutes ago               recursing_stonebraker
+1ce1de13595f   hello-world   "/hello"   18 minutes ago   Exited (0) 18 minutes ago               focused_edison
+chiriac@Chiriac:~$ docker start -i interesting_elion
+root@9930731ad44e:/# exit
+exit
+chiriac@Chiriac:~$ docker start -i interesting_elion
+root@9930731ad44e:/# apt-get update
+Get:1 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+Get:3 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1985 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+Get:6 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [3499 kB]
+Get:7 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+Get:8 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+Get:9 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+Get:10 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [34.8 kB]
+Get:11 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1504 kB]
+Get:12 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+Get:13 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [3669 kB]
+Get:14 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [2369 kB]
+Get:15 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [38.1 kB]
+Get:16 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2153 kB]
+Get:17 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.5 kB]
+Get:18 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [36.1 kB]
+Get:19 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [695 B]
+Fetched 37.5 MB in 3s (11.8 MB/s)
+Reading package lists... Done
+root@9930731ad44e:/# apt-get -y install nano
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Suggested packages:
+  hunspell
+The following NEW packages will be installed:
+  nano
+0 upgraded, 1 newly installed, 0 to remove and 10 not upgraded.
+Need to get 282 kB of archives.
+After this operation, 856 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 nano amd64 7.2-2ubuntu0.1 [282 kB]
+Fetched 282 kB in 0s (687 kB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package nano.
+(Reading database ... 4381 files and directories currently installed.)
+Preparing to unpack .../nano_7.2-2ubuntu0.1_amd64.deb ...
+Unpacking nano (7.2-2ubuntu0.1) ...
+Setting up nano (7.2-2ubuntu0.1) ...
+update-alternatives: using /bin/nano to provide /usr/bin/editor (editor) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/editor.1.gz because associated file /usr/share/man/man1/nano.1.gz (of link group editor) doesn't exist
+update-alternatives: using /bin/nano to provide /usr/bin/pico (pico) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/pico.1.gz because associated file /usr/share/man/man1/nano.1.gz (of link group pico) doesn't exist
+
+
+root@9930731ad44e:/# nano /usr/src/app/index.js
+
+  GNU nano 7.2                                      /usr/src/app/index.js
+console.log('Hello World')
