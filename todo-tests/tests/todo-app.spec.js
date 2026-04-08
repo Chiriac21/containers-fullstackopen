@@ -54,6 +54,21 @@ test.describe('Todo App E2E Tests', () => {
       await expect(todoItem).toBeVisible();
     }
   });
+
+  test('Todo component renders a not-done todo and allows marking it as done', async ({ page }) => {
+  const todoInput = page.getByRole('textbox')
+  const testTodoText = `Todo component test ${Date.now()}`
+
+  await todoInput.fill(testTodoText)
+  await page.keyboard.press('Enter')
+
+  await expect(page.getByText(testTodoText)).toBeVisible()
+  await expect(page.getByText('This todo is not done').first()).toBeVisible()
+
+  const todoRow = page.locator('div', { hasText: testTodoText })
+  await expect(todoRow.getByRole('button', { name: 'Delete' }).first()).toBeVisible()
+  await expect(todoRow.getByRole('button', { name: 'Set as done' }).first()).toBeVisible()
+  });
 });
 
 test.describe('Backend API Tests', () => {
@@ -90,7 +105,7 @@ test.describe('Backend API Tests', () => {
     });
     
     // Then check statistics
-    const response = await request.get('/api/statistics');
+    const response = await request.get('/api/todos/statistics');
     
     expect(response.status()).toBe(200);
     
