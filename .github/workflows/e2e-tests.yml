@@ -75,6 +75,8 @@ jobs:
           docker compose logs server
           echo "=== Frontend logs ==="
           docker compose logs app
+          echo "=== mongo logs ==="
+          docker compose logs mongo
           echo "=== Nginx logs ==="
           docker compose logs nginx
 
